@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Save Bangladeshi Hindus</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <!---------nav start--------->
+    <nav class="navbar navbar-expand-lg text-white bg-danger">
+        <div class="container-fluid text-white">
+            <a class="navbar-brand text-white" href="./">হোম</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" aria-current="page" href="./news.html">খবর</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="./temple-news.html">মন্দির ভাঙচুরের খবর</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle  text-white" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            ফর্ম
+                        </a>
+                        <ul class="dropdown-menu border-danger bg-danger-subtle">
+                            <li><a class="dropdown-item" href="./add-news.html">খবর দিন</a></li>
+                            <li><a class="dropdown-item" href="./add-temple-news.html">মন্দির ভাঙচুর এর তথ্য জমা দিন</a>
+                            </li>
+                            <li><a class="dropdown-item" href="./dev-sug.html">ডেবলাপার সাজেশন দিন</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="./login.html">Log In</a></li>
+                            <li><a class="dropdown-item" href="./create-acc.html">Create Account</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--------nav end---------->
+
+    <div class="container d-flex align-items-center justify-content-center position-relative z-3">
+        <div class="form-div-c border-danger border bg-danger-subtle shadow">
+            <h2 class="text-center">Create Account</h2>
+            <form>
+                <div class="form-group">
+                    <label for="Name">Name</label>
+                    <input type="text" class="form-control bg-danger-subtle focus-ring focus-ring-danger border-danger"
+                        id="Name" placeholder="Enter Name">
+                </div>
+                <div class="form-group">
+                    <label for="contact">Email</label>
+                    <input type="text" class="form-control bg-danger-subtle focus-ring focus-ring-danger border-danger"
+                        id="contact" placeholder="Enter Email">
+                </div>
+                <div class="form-group">
+                    <label class="border-danger border-3 border-bottom" for="division">Address</label><br>
+                    <span class="fs-13">Division</span>
+                    <select class="form-control bg-danger-subtle focus-ring focus-ring-danger border-danger"
+                        id="division" onchange="populateDistricts()">
+                        <option value="">Select Division</option>
+                        <option value="Dhaka">Dhaka</option>
+                        <option value="Chittagong">Chittagong</option>
+                        <option value="Khulna">Khulna</option>
+                        <option value="Rajshahi">Rajshahi</option>
+                        <option value="Barisal">Barisal</option>
+                        <option value="Sylhet">Sylhet</option>
+                        <option value="Rangpur">Rangpur</option>
+                        <option value="Mymensingh">Mymensingh</option>
+                    </select>
+                    <span class="fs-13">District</span>
+                    <select class="form-control bg-danger-subtle focus-ring focus-ring-danger border-danger"
+                        id="district" onchange="populateThanas()">
+                        <option value="">Select District</option>
+                    </select>
+                    <span class="fs-13">Thana</span>
+                    <select class="form-control bg-danger-subtle focus-ring focus-ring-danger border-danger" id="thana">
+                        <option value="">Select Thana</option>
+                    </select>
+                    <span class="fs-13">Full Address</span>
+                    <input type="text" class="form-control bg-danger-subtle focus-ring focus-ring-danger border-danger"
+                        id="fullAddress" placeholder="Enter Full Address">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-group">
+                        <input type="password"
+                            class="form-control bg-danger-subtle border-danger focus-ring focus-ring-danger"
+                            id="password" placeholder="Enter password">
+                        <div class="input-group-append">
+                            <button class="btn focus-ring focus-ring-danger btn-outline-danger" type="button"
+                                id="togglePassword">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-danger mt-3 col-12">Create Account</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- FontAwesome for the eye icon -->
+    <script src="https://kit.fontawesome.com/f547f6e6fd.js" crossorigin="anonymous"></script>
+    <script>
+        document.getElementById('togglePassword').addEventListener('click', function () {
+            var passwordField = document.getElementById('password');
+            var passwordFieldType = passwordField.getAttribute('type');
+            if (passwordFieldType == 'password') {
+                passwordField.setAttribute('type', 'text');
+                this.innerHTML = '<i class="fa fa-eye-slash" aria-hidden="true"></i>';
+            } else {
+                passwordField.setAttribute('type', 'password');
+                this.innerHTML = '<i class="fa fa-eye" aria-hidden="true"></i>';
+            }
+        });
+
+        const data = {
+            Dhaka: {
+                districts: {
+                    "Dhaka": ["Adabor", "Badda", "Bangsal", "Bimanbandar", "Cantonment", "Chakbazar", "Darus Salam",
+                        "Dhanmondi", "Gendaria", "Gulshan", "Hazaribagh", "Jatrabari", "Kadamtali", "Kafrul",
+                        "Kalabagan", "Kamrangirchar", "Khilgaon", "Khilkhet", "Kotwali", "Lalbagh", "Mirpur",
+                        "Mohammadpur", "Motijheel", "Mughda", "New Market", "Pallabi", "Paltan", "Ramna",
+                        "Rampura", "Sabujbagh", "Shah Ali", "Shahbagh", "Sher-e-Bangla Nagar", "Shyampur",
+                        "Sutrapur", "Tejgaon", "Tejgaon Industrial Area", "Turag", "Uttar Khan", "Uttara",
+                        "Vatara"
+                    ],
+                    "Faridpur": ["Faridpur Sadar", "Alfadanga", "Bhanga", "Boalmari", "Charbhadrasan", "Madhukhali",
+                        "Nagarkanda", "Sadarpur", "Saltha"
+                    ],
+                    "Gazipur": ["Gazipur Sadar", "Kaliakair", "Kaliganj", "Kapasia", "Sreepur"],
+                    "Gopalganj": ["Gopalganj Sadar", "Kashiani", "Kotalipara", "Muksudpur", "Tungipara"],
+                    "Kishoreganj": ["Kishoreganj Sadar", "Austagram", "Bajitpur", "Bhairab", "Hossainpur", "Itna",
+                        "Karimganj", "Katiadi", "Kuliarchar", "Mithamain", "Nikli", "Pakundia", "Tarail"
+                    ],
+                    "Madaripur": ["Madaripur Sadar", "Kalkini", "Rajoir", "Shibchar"],
+                    "Manikganj": ["Manikganj Sadar", "Daulatpur", "Ghior", "Harirampur", "Saturia", "Shivalaya",
+                        "Singair"
+                    ],
+                    "Munshiganj": ["Munshiganj Sadar", "Gazaria", "Lohajang", "Sirajdikhan", "Sreenagar",
+                        "Tongibari"
+                    ],
+                    "Narayanganj": ["Narayanganj Sadar", "Araihazar", "Bandar", "Rupganj", "Sonargaon"],
+                    "Narsingdi": ["Narsingdi Sadar", "Belabo", "Monohardi", "Palash", "Raipura", "Shibpur"],
+                    "Rajbari": ["Rajbari Sadar", "Baliakandi", "Goalandaghat", "Pangsha", "Kalukhali"],
+                    "Shariatpur": ["Shariatpur Sadar", "Bhedarganj", "Damudya", "Gosairhat", "Naria", "Zanjira"],
+                    "Tangail": ["Tangail Sadar", "Bhuapur", "Delduar", "Dhanbari", "Ghatail", "Gopalpur",
+                        "Kalihati", "Madhupur", "Mirzapur", "Nagarpur", "Sakhipur"
+                    ],
+                }
+            },
+            Chittagong: {
+                districts: {
+                    "Chittagong": ["Anwara", "Banshkhali", "Boalkhali", "Chandanaish", "Chittagong Sadar",
+                        "Fatikchhari", "Hathazari", "Lohagara", "Mirsharai", "Patiya", "Rangunia", "Raozan",
+                        "Sandwip", "Satkania", "Sitakunda"
+                    ],
+                    "Brahmanbaria": ["Brahmanbaria Sadar", "Ashuganj", "Bancharampur", "Bijoynagar", "Kasba",
+                        "Nabinagar", "Nasirnagar", "Sarail"
+                    ],
+                    "Chandpur": ["Chandpur Sadar", "Faridganj", "Haimchar", "Haziganj", "Kachua", "Matlab Dakshin",
+                        "Matlab Uttar", "Shahrasti"
+                    ],
+                    "Comilla": ["Comilla Sadar", "Barura", "Brahmanpara", "Burichong", "Chandina", "Chauddagram",
+                        "Daudkandi", "Debidwar", "Homna", "Laksam", "Monohorgonj", "Muradnagar", "Nangalkot",
+                        "Titas"
+                    ],
+                    "Cox's Bazar": ["Cox's Bazar Sadar", "Chakaria", "Kutubdia", "Maheshkhali", "Pekua", "Ramu",
+                        "Teknaf", "Ukhia"
+                    ],
+                    "Feni": ["Feni Sadar", "Chagalnaiya", "Daganbhuiyan", "Fulgazi", "Parshuram", "Sonagazi"],
+                    "Khagrachhari": ["Khagrachhari Sadar", "Dighinala", "Lakshmichhari", "Mahalchhari",
+                        "Manikchhari", "Matiranga", "Panchhari", "Ramgarh"
+                    ],
+                    "Lakshmipur": ["Lakshmipur Sadar", "Raipur", "Ramganj", "Ramgati", "Komolnagar"],
+                    "Noakhali": ["Noakhali Sadar", "Begumganj", "Chatkhil", "Companiganj", "Hatiya", "Senbagh",
+                        "Sonaimuri", "Subarnachar", "Kabirhat"
+                    ],
+                    "Rangamati": ["Rangamati Sadar", "Bagaichhari", "Barkal", "Kawkhali", "Belaichhari", "Kaptai",
+                        "Juraichhari", "Langadu", "Naniarchar", "Rajsthali"
+                    ],
+                }
+            },
+            Khulna: {
+                districts: {
+                    "Khulna": ["Khulna Sadar", "Dacope", "Koyra", "Paikgachha", "Rupsha", "Sadar Upazila"],
+                    "Jessore": ["Jessore Sadar", "Abhaynagar", "Bagherpara", "Chaugachha", "Keshabpur",
+                        "Jhikargachha", "Sharsha"
+                    ],
+                    "Jhenidah": ["Jhenidah Sadar", "Chapalish", "Harinakunda", "Kaliganj", "Kotchandpur",
+                        "Maheshpur", "Shailkupa"
+                    ],
+                    "Kushtia": ["Kushtia Sadar", "Bheramara", "Daulatpur", "Kumarkhali", "Mirpur", "Kushtia Sadar"],
+                    "Magura": ["Magura Sadar", "Shalikha", "Mohammadpur", "Sreepur"],
+                    "Meherpur": ["Meherpur Sadar", "Mujibnagar", "Gangni", "Kusumgram"],
+                    "Narail": ["Narail Sadar", "Lohagara", "Kalia", "Rabindi"],
+                    "Satkhira": ["Satkhira Sadar", "Debhata", "Kalaroa", "Kaliganj", "Shyamnagar", "Assasuni",
+                        "Satkhira Sadar"
+                    ]
+                }
+            },
+            Rajshahi: {
+                districts: {
+                    "Bogura": ["Bogura Sadar", "Adamdighi", "Dhunat", "Dhunat", "Gabtali", "Kahalu", "Kahaloo",
+                        "Nandigram", "Sariakandi", "Sherpur", "Shibganj", "Sonatola"
+                    ],
+                    "Jaipurhat": ["Jaipurhat Sadar", "Atram Khan", "Khetlal", "Panchbibi", "Kalai", "Barkatpur"],
+                    "Jamalpur": ["Jamalpur Sadar", "Bokshiganj", "Dewanganj", "Islampur", "Melandaha", "Naria",
+                        "Sarishabari"
+                    ],
+                    "Naogaon": ["Naogaon Sadar", "Badalgachhi", "Dhamoirhat", "Manda", "Niamatpur", "Raninagar",
+                        "Rohonpur", "Sapahar", "Singra"
+                    ],
+                    "Natore": ["Natore Sadar", "Bagatipara", "Baraigram", "Lalpur", "Naldanga", "Singra"],
+                    "Pabna": ["Pabna Sadar", "Admasur", "Bera", "Bhangura", "Chatmohar", "Faridpur", "Ishwardi",
+                        "Pabna Sadar", "Santhia", "Sujanagar"
+                    ],
+                    "Panchagarh": ["Panchagarh Sadar", "Boda", "Debiganj", "Dinajpur", "Tetulia"],
+                    "Rajshahi": ["Rajshahi Sadar", "Bagmara", "Charghat", "Chapainawabganj", "Durgapur", "Puthia",
+                        "Tanore", "Godagari", "Mohanpur"
+                    ],
+                    "Rangpur": ["Rangpur Sadar", "Atoari", "Badarganj", "Badalgachhi", "Gangachara", "Kawnia",
+                        "Pirgachha", "Pirganj", "Rangpur Sadar", "Rangpur"
+                    ],
+                    "Thakurgaon": ["Thakurgaon Sadar", "Baliadangi", "Haripur", "Ranishwar", "Ranishwar",
+                        "Thakurgaon Sadar"
+                    ]
+                }
+            },
+            Barisal: {
+                districts: {
+                    "Barisal": ["Barisal Sadar", "Bakerganj", "Babuganj", "Hizla", "KaziKandi", "Muladi",
+                        "Wazirpur"
+                    ],
+                    "Barguna": ["Barguna Sadar", "Amtali", "Bamna", "Bauphal", "Betagi", "Patharghata", "Taltali"],
+                    "Barisal": ["Barisal Sadar", "Bakerganj", "Babuganj", "Hizla", "KaziKandi", "Muladi",
+                        "Wazirpur"
+                    ],
+                    "Jhalokati": ["Jhalokati Sadar", "Kathalia", "Kuarakandi", "Rajapur", "Shariatpur",
+                        "Uchharganj"
+                    ],
+                    "Patuakhali": ["Patuakhali Sadar", "Bauphal", "Dumki", "Galachipa", "Mirzaganj", "Patuakhali",
+                        "Rangabali"
+                    ],
+                    "Pirojpur": ["Pirojpur Sadar", "Bhandaria", "Kakchira", "Mathbaria", "Nazirpur", "Nesarabad",
+                        "Sadar"
+                    ],
+                }
+            },
+            Sylhet: {
+                districts: {
+                    "Sylhet": ["Sylhet Sadar", "Beanibazar", "Bianibazar", "Bishwanath", "Jaintiapur", "Jalalabad",
+                        "Jaintiapur", "Moulvibazar", "Roudhapur", "Sunamganj", "Osmaninagar", "Companiganj"
+                    ],
+                    "Moulvibazar": ["Moulvibazar Sadar", "Kulaura", "Srimangal", "Juri", "Barlekha", "Rajnagar",
+                        "Kamalgonj", "Bishwanath"
+                    ],
+                    "Sunamganj": ["Sunamganj Sadar", "Bishwamvarpur", "Chhatak", "Dakkhin Sunamganj", "Derai",
+                        "Jamalganj", "Juri", "Taherpur"
+                    ],
+                    "Habiganj": ["Habiganj Sadar", "Ajmiriganj", "Baniachong", "Chunarughat", "Lakhai", "Madhabpur",
+                        "Nabiganj", "Shayestaganj"
+                    ],
+                    "Jamalpur": ["Jamalpur Sadar", "Islampur", "Melandaha", "Bishanpur", "Dewanganj", "Jamalpur",
+                        "Matlab", "Sarishabari"
+                    ],
+                    "Brahmanbaria": ["Brahmanbaria Sadar", "Ashuganj", "Bancharampur", "Bijoynagar", "Kasba",
+                        "Nabinagar", "Nasirnagar", "Sarail"
+                    ],
+                    "Kishoreganj": ["Kishoreganj Sadar", "Austagram", "Bajitpur", "Bhairab", "Hossainpur", "Itna",
+                        "Karimganj", "Katiadi", "Kuliarchar", "Mithamain", "Nikli", "Pakundia", "Tarail"
+                    ],
+                    "Netrakona": ["Netrakona Sadar", "Barhatta", "Durgapur", "Khaliajuri", "Kenduli", "Khalia",
+                        "Madhyapara", "Mohanpur", "Netrakona", "Purbadhala", "Sadar", "Wagol"
+                    ],
+                    "Brahmanbaria": ["Brahmanbaria Sadar", "Ashuganj", "Bancharampur", "Bijoynagar", "Kasba",
+                        "Nabinagar", "Nasirnagar", "Sarail"
+                    ],
+                    "Moulvibazar": ["Moulvibazar Sadar", "Kulaura", "Srimangal", "Juri", "Barlekha", "Rajnagar",
+                        "Kamalgonj", "Bishwanath"
+                    ]
+                }
+            },
+            Rangpur: {
+                districts: {
+                    "Dinajpur": ["Dinajpur Sadar", "Birampur", "Birganj", "Biral", "Bochaganj", "Chirirbandar",
+                        "Phulbari", "Ghoraghat", "Hakimpur", "Kaharole", "Khansama", "Nawabganj", "Parbatipur"
+                    ],
+                    "Gaibandha": ["Gaibandha Sadar", "Fulchhari", "Gobindaganj", "Palashbari", "Sadullapur",
+                        "Saghata", "Sundarganj"
+                    ],
+                    "Kurigram": ["Kurigram Sadar", "Bhurungamari", "Char Rajibpur", "Chilmari", "Phulbari",
+                        "Nageshwari", "Rajarhat", "Raomari", "Ulipur"
+                    ],
+                    "Lalmonirhat": ["Lalmonirhat Sadar", "Aditmari", "Hatibandha", "Kaliganj", "Patgram"],
+                    "Nilphamari": ["Nilphamari Sadar", "Dimla", "Domar", "Jaldhaka", "Kishoreganj", "Saidpur"],
+                    "Panchagarh": ["Panchagarh Sadar", "Atwari", "Boda", "Debiganj", "Tetulia"],
+                    "Rangpur": ["Rangpur Sadar", "Badarganj", "Gangachara", "Kaunia", "Mithapukur", "Pirgachha",
+                        "Pirganj", "Taraganj"
+                    ],
+                    "Thakurgaon": ["Thakurgaon Sadar", "Baliadangi", "Haripur", "Pirganj", "Ranisankail"],
+                }
+            },
+            Mymensingh: {
+                districts: {
+                    "Mymensingh": ["Mymensingh Sadar", "Bhaluka", "Dhobaura", "Fulbaria", "Gaffargaon", "Gauripur",
+                        "Haluaghat", "Ishwarganj", "Muktagachha", "Nandail", "Phulpur", "Trishal"
+                    ],
+                    "Jamalpur": ["Jamalpur Sadar", "Bakshiganj", "Dewanganj", "Islampur", "Madarganj", "Melandaha",
+                        "Sarishabari"
+                    ],
+                    "Netrokona": ["Netrokona Sadar", "Atpara", "Barhatta", "Durgapur", "Kendua", "Kalmakanda",
+                        "Madan", "Mohanganj", "Purbadhala", "Khaliajuri"
+                    ],
+                    "Sherpur": ["Sherpur Sadar", "Jhenaigati", "Nakla", "Nalitabari", "Sreebardi"]
+                }
+            }
+        };
+
+        function populateDistricts() {
+            const divisionSelect = document.getElementById('division');
+            const districtSelect = document.getElementById('district');
+            const thanaSelect = document.getElementById('thana');
+            const selectedDivision = divisionSelect.value;
+
+            // Clear previous options
+            districtSelect.innerHTML = '<option value="">Select District</option>';
+            thanaSelect.innerHTML = '<option value="">Select Thana</option>';
+
+            if (selectedDivision) {
+                const districts = data[selectedDivision].districts;
+                for (const district in districts) {
+                    const option = document.createElement('option');
+                    option.value = district;
+                    option.textContent = district;
+                    districtSelect.appendChild(option);
+                }
+            }
+        }
+
+        function populateThanas() {
+            const districtSelect = document.getElementById('district');
+            const thanaSelect = document.getElementById('thana');
+            const selectedDivision = document.getElementById('division').value;
+            const selectedDistrict = districtSelect.value;
+
+            // Clear previous options
+            thanaSelect.innerHTML = '<option value="">Select Thana</option>';
+
+            if (selectedDivision && selectedDistrict) {
+                const thanas = data[selectedDivision].districts[selectedDistrict];
+                for (const thana of thanas) {
+                    const option = document.createElement('option');
+                    option.value = thana;
+                    option.textContent = thana;
+                    thanaSelect.appendChild(option);
+                }
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+    <script src="./js/script.js"></script>
+</body>
+
+</html>

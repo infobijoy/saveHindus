@@ -1,2 +1,0 @@
-# saveHindus
-Save Bangladeshi Hindus.

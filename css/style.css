@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.form-div {
+  max-width: 364px;
+  padding: 16px;
+  border-radius: 16px;
+  height: 260px;
+}
+.container.d-flex.justify-content-center {
+  height: calc(100vh - 112px);
+}
+.form-div-c {
+  max-width: 364px;
+  padding: 16px;
+  border-radius: 16px;
+  height: 590px;
+}
+.fs-13 {
+  font-size: 13px;
+}
